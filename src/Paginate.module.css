@@ -1,0 +1,36 @@
+.container {
+  display: flex;
+  justify-content: flex-end;
+  flex-direction: row;
+  width: 100%;
+  box-sizing: border-box;
+  padding: 1em 5em;
+}
+
+.limit > span {
+  font-weight: bold;
+  font-size: 16;
+}
+
+.limit > select {
+  box-sizing: border-box;
+  padding: 0.5em;
+  margin-left: 0.5em;
+}
+
+.page > button {
+  border: none;
+  background: none;
+  color: #767676;
+  font-size: 1.4em;
+  font-weight: bold;
+  margin: 0px;
+}
+
+.page > button:disabled {
+  color: #bebebe;
+}
+
+.page > span {
+  margin: 0 0.5em;
+}

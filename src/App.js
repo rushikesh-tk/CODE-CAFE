@@ -1,25 +1,40 @@
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import { BrowserRouter as Router, Route } from "react-router-dom";
+import { Container } from "react-bootstrap";
+import Header from "./components/Header";
+import ContestListScreen from "./screens/ContestListScreen";
+import ContestDetailsScreen from "./screens/ContestDetailsScreen";
+import FavContestListScreen from "./screens/FavContestListScreen";
+import "tachyons";
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
-}
+const App = () => {
+	return (
+		<Router>
+			<Header />
+			<main className="py-3">
+				<Container>
+					<Route
+						path="/search/:keyword"
+						component={ContestListScreen}
+					/>
+					<Route
+						path="/contest-type/:keyword"
+						component={ContestListScreen}
+					/>
+					<Route path="/" component={ContestListScreen} exact />
+					<Route
+						path="/contest/:id"
+						component={ContestDetailsScreen}
+					/>
+					<Route
+						path="/favourites"
+						component={FavContestListScreen}
+						exact
+					/>
+				</Container>
+			</main>
+		</Router>
+	);
+};
 
 export default App;
