@@ -60,7 +60,7 @@ export const listContestDetails = (id) => async (dispatch) => {
 		const data = result.data.result;
 
 		const contestDetail = data.find((x) => {
-			return x.id == id;
+			return x.id.toString() === id.toString();
 		});
 
 		//console.log(contestDetail);
