@@ -1,4 +1,5 @@
 import React from "react";
+//import { Container } from "react-bootstrap";
 import {
 	LineChart,
 	Line,
@@ -15,7 +16,7 @@ const Chart = ({ newContestArray }) => {
 	//console.log(newContestArray);
 
 	return (
-		<LineChart width={800} height={300} data={data}>
+		<LineChart width={600} height={300} data={data}>
 			<Line type="monotone" dataKey="durationSeconds" stroke="#8884d8" />
 			<CartesianGrid stroke="#ccc" />
 			<XAxis dataKey="id" />

@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Route } from "react-router-dom";
-import { Table } from "react-bootstrap";
+import { Table, Container } from "react-bootstrap";
 import { listContests } from "../actions/contestActions";
 import Loader from "../components/Loader";
 import Message from "../components/Message";
@@ -43,93 +43,102 @@ const ContestList = ({ history, match }) => {
 
 	return (
 		<>
-			<Chart newContestArray={newContestArray} />
-			<Paginate
-				page={page}
-				setPage={setPage}
-				limit={limit}
-				setLimit={setLimit}
-				lastPage={Math.ceil(lastPage - 1)}
-			/>
-			<Route
-				render={({ history }) => <FilterContests history={history} />}
-			/>
-			{loading ? (
-				<Loader />
-			) : error ? (
-				<Message variant="danger">{error}</Message>
-			) : (
-				<>
-					{sortUpcomingContests ? (
-						<Table striped bordered hover variant="dark">
-							<thead>
-								<tr>
-									<th className="f3">
-										UPCOMING / ONGOING CONTESTS{" "}
-										<h4 className="fr silver">
-											Number of contests :{" "}
-											{sortUpcomingContests.length}
-										</h4>
-									</th>
-								</tr>
-							</thead>
-							<tbody>
-								{sortUpcomingContests.map((contest) => (
-									<tr>
-										<td
-											className="f5"
-											onClick={() =>
-												onContestNameClick(contest.id)
-											}
-											key={contest.id}
-										>
-											<div className="pointer">
-												{contest.name}
-											</div>
-										</td>
-									</tr>
-								))}
-							</tbody>
-						</Table>
-					) : (
-						<Loader />
+			{" "}
+			<Container>
+				<Chart newContestArray={newContestArray} />
+				<Paginate
+					page={page}
+					setPage={setPage}
+					limit={limit}
+					setLimit={setLimit}
+					lastPage={Math.ceil(lastPage - 1)}
+				/>
+				<Route
+					render={({ history }) => (
+						<FilterContests history={history} />
 					)}
-					{sortFinishedContests ? (
-						<Table striped bordered hover variant="dark">
-							<thead>
-								<tr>
-									<th className="f3">
-										FINISHED CONTESTS
-										<h4 className="fr silver">
-											Number of contests :{" "}
-											{sortFinishedContests.length}
-										</h4>
-									</th>
-								</tr>
-							</thead>
-							<tbody>
-								{sortFinishedContests.map((contest) => (
+				/>
+				{loading ? (
+					<Loader />
+				) : error ? (
+					<Message variant="danger">{error}</Message>
+				) : (
+					<>
+						{sortUpcomingContests ? (
+							<Table striped bordered hover variant="dark">
+								<thead>
 									<tr>
-										<td
-											className="f5"
-											onClick={() =>
-												onContestNameClick(contest.id)
-											}
-											key={contest.id}
-										>
-											<div className="pointer">
-												{contest.name}
-											</div>
-										</td>
+										<th className="f3">
+											UPCOMING / ONGOING CONTESTS{" "}
+											<h4 className="fr silver">
+												Number of contests :{" "}
+												{sortUpcomingContests.length}
+											</h4>
+										</th>
 									</tr>
-								))}
-							</tbody>
-						</Table>
-					) : (
-						<Loader />
-					)}
-				</>
-			)}
+								</thead>
+								<tbody>
+									{sortUpcomingContests.map((contest) => (
+										<tr>
+											<td
+												className="f5"
+												onClick={() =>
+													onContestNameClick(
+														contest.id
+													)
+												}
+												key={contest.id}
+											>
+												<div className="pointer">
+													{contest.name}
+												</div>
+											</td>
+										</tr>
+									))}
+								</tbody>
+							</Table>
+						) : (
+							<Loader />
+						)}
+						{sortFinishedContests ? (
+							<Table striped bordered hover variant="dark">
+								<thead>
+									<tr>
+										<th className="f3">
+											FINISHED CONTESTS
+											<h4 className="fr silver">
+												Number of contests :{" "}
+												{sortFinishedContests.length}
+											</h4>
+										</th>
+									</tr>
+								</thead>
+								<tbody>
+									{sortFinishedContests.map((contest) => (
+										<tr>
+											<td
+												className="f5"
+												onClick={() =>
+													onContestNameClick(
+														contest.id
+													)
+												}
+												key={contest.id}
+											>
+												<div className="pointer">
+													{contest.name}
+												</div>
+											</td>
+										</tr>
+									))}
+								</tbody>
+							</Table>
+						) : (
+							<Loader />
+						)}
+					</>
+				)}
+			</Container>
 		</>
 	);
 };
