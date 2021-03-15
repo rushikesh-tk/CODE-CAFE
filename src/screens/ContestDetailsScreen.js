@@ -10,7 +10,7 @@ const ContestDetailsScreen = ({ match }) => {
 
 	useEffect(() => {
 		dispatch(listContestDetails(match.params.id));
-	}, [dispatch]);
+	}, [dispatch, match.params.id]);
 
 	const contestDetail = useSelector((state) => state.contestDetail);
 	const { loading, error, contest } = contestDetail;
